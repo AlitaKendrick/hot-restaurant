@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var fs = require("fs");
 
 var app = express();
 var port = 8000;
@@ -9,6 +10,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+var reservations = [];
+
 
 app.listen(port, function(){
 	console.log("app listening on port " + port);
@@ -26,11 +30,15 @@ app.get("/reserve", function(request, response) {
 });
 
 app.post("/api/tables", function(request, response){
-	// var newReservation = request.body;
+	var newReservation = request.body;
 	// console.log(newReservation);
+	reservations.push(newReservation);
 
-	// response.sendFile(path.join(__dirname, "reserve.html"));
-	console.log(request.body);
+
+    var reservationArrayJson = JSON.stringify(reservations);
+    fs.writeFile('reservations.json', reservationArrayJson, 'utf8', 'callback');
+
+	console.log(reservations);
 });
 
 
