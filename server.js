@@ -13,6 +13,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 var reservations = [];
 
+var tableCount = 0;
 
 app.listen(port, function(){
 	console.log("app listening on port " + port);
@@ -29,6 +30,11 @@ app.get("/reserve", function(request, response) {
   response.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+app.get("/tables", function(request, response) {
+  response.sendFile(path.join(__dirname, "tables.html"));
+});
+
+
 app.get("/api/tables", function(request, response) {
 	return response.json(reservations);
 });
@@ -37,7 +43,6 @@ app.post("/api/tables", function(request, response){
 	var newReservation = request.body;
 	// console.log(newReservation);
 	reservations.push(newReservation);
-
 
     var reservationArrayJson = JSON.stringify(reservations);
     fs.writeFile('reservations.json', reservationArrayJson, 'utf8', 'callback');
