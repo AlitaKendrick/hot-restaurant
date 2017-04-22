@@ -9,8 +9,6 @@
 	<!-- <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script> -->
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-	<script type="text/javascript" src="tables.js"></script>
 	
 </head>
 
@@ -85,19 +83,18 @@ $.get('api/waitlist', function (data) {
 
 function listReservations(data, htmlSection) {
 	for (var i = 0; i < data.length; i++) {
-}
+
 //the path for the items to be displayed will need to be changed depending on how the data is pulled.
 //listing individual reservations with their ID, name
 	
 	var reservedTable = $('<div></div>');
-	reservedTable.addclass('well well-sm');
-	reservedTable.append('<h2>' + data[i].name + '</h2>');
+	reservedTable.addClass('well well-sm');
+	reservedTable.append('<h2>' + data[i].customerName + '</h2>');
 
 	$(htmlSection).append(reservedTable);
 	}
 
-}
-
+	}
 
 </script>
 </html>
