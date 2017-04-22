@@ -25,7 +25,13 @@ app.get("/reserve", function(request, response) {
   response.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+app.post("/api/tables", function(request, response){
+	// var newReservation = request.body;
+	// console.log(newReservation);
 
+	// response.sendFile(path.join(__dirname, "reserve.html"));
+	console.log(request.body);
+});
 
 
 
