@@ -1,0 +1,24 @@
+{
+  "name": "hot-restaurant",
+  "version": "1.0.0",
+  "description": "in class exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlitaKendrick/hot-restaurant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlitaKendrick/hot-restaurant/issues"
+  },
+  "homepage": "https://github.com/AlitaKendrick/hot-restaurant#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "url": "^0.11.0"
+  }
+}
