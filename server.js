@@ -29,6 +29,10 @@ app.get("/reserve", function(request, response) {
   response.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+app.get("/api/tables", function(request, response) {
+	return response.json(reservations);
+});
+
 app.post("/api/tables", function(request, response){
 	var newReservation = request.body;
 	// console.log(newReservation);
