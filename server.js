@@ -12,6 +12,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 var reservations = [];
+var waitlist = [];
 
 var tableCount = 0;
 
@@ -39,6 +40,10 @@ app.get("/api/tables", function(request, response) {
 	return response.json(reservations);
 });
 
+app.get("/api/waitlist", function(request, response) {
+	return response.json(waitlist);
+});
+
 app.post("/api/tables", function(request, response){
 	var newReservation = request.body;
 	// console.log(newReservation);
@@ -48,6 +53,16 @@ app.post("/api/tables", function(request, response){
     fs.writeFile('reservations.json', reservationArrayJson, 'utf8', 'callback');
 
 	console.log(reservations);
+});
+
+app.post("/api/waitlist", function(request, response){
+	var newWaitlist = request.body;
+	// console.log(newReservation);
+	waitlist.push(newWaitlist);
+
+    var waitlistArrayJson = JSON.stringify(waitlist);
+    fs.writeFile('waitlist.json', waitlistArrayJson, 'utf8', 'callback');
+
 });
 
 
