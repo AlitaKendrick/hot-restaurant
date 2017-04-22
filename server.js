@@ -25,6 +25,10 @@ app.get("/reserve", function(request, response) {
   response.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+app.get("/tables", function(request, response) {
+  response.sendFile(path.join(__dirname, "tables.html"));
+});
+
 
 
 
