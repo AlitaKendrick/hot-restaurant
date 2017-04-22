@@ -9,8 +9,6 @@
 	<!-- <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script> -->
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-	<script type="text/javascript" src="tables.js"></script>
 	
 </head>
 
@@ -69,16 +67,22 @@
 //get the API data for the table reservations here
 //JSON query
 
-$.get('api'+ reservation, function (data){
+// var currentURL = window.location.origin;
+
+// $.ajax({url: currentURL + "/api/tables", method: "GET"})
+
+$.get('/api/tables', function (data){
+
 
 	console.log(data);
+	
 
-	listReservations(data, '#tableSection');
-	listReservations(data, '#waitlistSection');
+	// listReservations(data, '#tableSection');
+	// listReservations(data, '#waitlistSection');
 
 function listReservations(data, htmlSection) {
 	for (var i = 0; i < data.length; i++) {
-}
+
 //the path for the items to be displayed will need to be changed depending on how the data is pulled.
 //listing individual reservations with their ID, name
 	
@@ -89,8 +93,7 @@ function listReservations(data, htmlSection) {
 	$(htmlSection).append(reservedTable);
 	}
 
-}
-
+	}
 
 });
 
