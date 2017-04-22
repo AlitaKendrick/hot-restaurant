@@ -9,6 +9,8 @@
 	<!-- <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script> -->
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+	<script type="text/javascript" src="tables.js"></script>
 	
 </head>
 
@@ -35,6 +37,7 @@
 						<h4 class="panel-title">Current Reservations</h4>
 					</div>
 					<div class="panel-body" id="tableSection">
+	<!-- 				<div class="well well-sm"><h2>Table uno</h2></div> -->
 					</div>
 				</div>
 
@@ -43,21 +46,59 @@
 					<div class="panel-heading">
 						<h4 class="panel-title">Waiting List</h4>
 					</div>
-					<div class="panel-body" id="waitlistSection">asdf
+					<div class="panel-body" id="waitlistSection">
 					</div>
 				</div>
 			</div>
 		</div>
 
 
-	    <footer class="footer">
+	  <!--   <footer class="footer">
 	      <div class="container">
 	      	<p>Control Panel</p>
 	        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
 	      </div>
-	    </footer>
+	    </footer> -->
 
 	</div>
 
 </body>
+
+<script type="text/javascript">
+
+//get the API data for the table reservations here
+//JSON query
+
+// var currentURL = window.location.origin;
+
+// $.ajax({url: currentURL + "/api/tables", method: "GET"})
+
+$.get('/api/tables', function (data){
+
+	console.log(data);
+
+	listReservations(data, '#tableSection');
+	listReservations(data, '#waitlistSection');
+
+function listReservations(data, htmlSection) {
+	for (var i = 0; i < data.length; i++) {
+}
+//the path for the items to be displayed will need to be changed depending on how the data is pulled.
+//listing individual reservations with their ID, name
+	
+	var reservedTable = $('<div></div>');
+	reservedTable.addclass('well well-sm');
+	reservedTable.append('<h2>' + data[i].name + '</h2>');
+
+	$(htmlSection).append(reservedTable);
+	}
+
+}
+
+
+});
+
+
+
+</script>
 </html>
