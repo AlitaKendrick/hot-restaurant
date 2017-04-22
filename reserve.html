@@ -66,25 +66,42 @@
         customerID: $('#reserve_uniqueID').val().trim()
       };
 
+
       var currentURL = window.location.origin;
+
+      $.get(currentURL + '/api/tables', function(data) {
+      	console.log(data);
+      	if (data.length < 5) {
+      		$.post(currentURL + "/api/tables", newReservation,
+      			function(data){
+
+		          alert("Yay! You are officially booked!");
+
+
+		        $('#reserve_name').val("");
+		        $('#reserve_phone').val("");
+		        $('#reserve_email').val("");
+		        $('#reserve_uniqueID').val("");
+		      });
+		   
+      		} else {
+      			$.post(currentURL + "/api/waitlist", newReservation,
+      			function(data){
+
+
+		        alert("Sorry, you are on the wait list.");
+
+		        $('#reserve_name').val("");
+		        $('#reserve_phone').val("");
+		        $('#reserve_email').val("");
+		        $('#reserve_uniqueID').val("");
+		      });
+      		}
+     	});
+ 	});
+
        
-      $.post(currentURL + "/api/tables", newReservation,
-      function(data){
-
-        if (data == true) {
-          alert("Yay! You are officially booked!")
-        }
-
-        if (data == false) {
-          alert("Sorry you are on the wait list")
-        }
-
-        $('#reserve_name').val("");
-        $('#reserve_phone').val("");
-        $('#reserve_email').val("");
-        $('#reserve_uniqueID').val("");
-      });
-    });
+      
   </script>
 </body>
 </html>
